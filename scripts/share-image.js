@@ -1,0 +1,22 @@
+document.getElementById('shareBtn').addEventListener('click', () => {
+  const canvas = document.getElementById('canvas');
+  const captionsList = document.getElementById('captionsList');
+  const texts = Array.from(captionsList.querySelectorAll('p')).map(el => el.textContent);
+  const width = 600, lineHeight = 40;
+  canvas.width = width;
+  canvas.height = texts.length * lineHeight + 60;
+  const ctx = canvas.getContext('2d');
+  const isDark = document.documentElement.classList.contains('dark');
+  ctx.fillStyle = isDark ? '#1f2937' : '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = isDark ? '#f3f4f6' : '#111827';
+  ctx.font = '20px Arial';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText('Insta Caption Assistant', 20, 20);
+  texts.forEach((t, i) => ctx.fillText(t, 20, 60 + i * lineHeight));
+  const link = document.createElement('a');
+  link.download = 'captions.png';
+  link.href = canvas.toDataURL();
+  link.click();
+});

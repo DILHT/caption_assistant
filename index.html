@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insta Caption Assistant</title>
+  <link rel="manifest" href="manifest.json" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./styles/tailwind-config.js"></script>
+</head>
+  <body class="bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-md w-full p-6 space-y-4">
+    <div class="flex justify-end">
+      <button id="themeToggle" class="text-xl p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">🌙</button>
+    </div>
+    <h1 class="text-2xl font-bold text-center">Instagram Caption Assistant</h1>
+    <form id="captionForm" class="space-y-4">
+      <textarea id="prompt" name="prompt" rows="3" class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700" placeholder="Describe your photo..." required></textarea>
+      <select id="tone" name="tone" class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400">
+        <option value="funny">😂 Funny</option>
+        <option value="romantic">😍 Romantic</option>
+        <option value="savage">😎 Savage</option>
+        <option value="professional">💼 Professional</option>
+      </select>
+      <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white p-3 rounded flex justify-center items-center space-x-2 transition">
+        <span id="btnText">Generate Captions</span>
+        <svg id="loadingSpinner" class="w-5 h-5 hidden animate-spin text-white" fill="none" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" class="opacity-25"/>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      </button>
+    </form>
+    <div id="errorMsg" class="hidden text-red-500 text-center"></div>
+    <div id="results" class="hidden space-y-2">
+      <h2 class="text-xl font-semibold text-center">✨ Your Captions:</h2>
+      <div id="captionsList" class="space-y-2"></div>
+      <button id="shareBtn" class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white p-3 rounded transition">📤 Share as Image</button>
+      <canvas id="canvas" class="hidden"></canvas>
+    </div>
+  </div>
+  <script src="./scripts/theme.js"></script>
+  <script src="./scripts/caption-generator.js"></script>
+  <script src="./scripts/share-image.js"></script>
+  <script src="./scripts/pwa-install.js"></script>
+  <script src="./scripts/service-worker-register.js"></script>
+</body>
+</html>
