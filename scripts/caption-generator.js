@@ -16,7 +16,7 @@ form.addEventListener('submit', async (e) => {
 
   const formData = new FormData(form);
   try {
-    const res = await fetch('http://localhost:8000/generate-captions', {
+    const res = await fetch('https://captionassistantbackend.onrender.com/generate-captions', {
       method: 'POST',
       body: formData
     });
